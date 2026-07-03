@@ -1,0 +1,60 @@
+C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\utils\generic.py:441: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(
+C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\utils\generic.py:309: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  _torch_pytree._register_pytree_node(
+Traceback (most recent call last):
+  File "C:\Users\aasad\Desktop\RAG_Project\backend\tts_worker.py", line 51, in <module>
+    synthesize(args.poet_key, args.text, args.output_path, args.language)
+  File "C:\Users\aasad\Desktop\RAG_Project\backend\tts_worker.py", line 33, in synthesize
+    tts.tts_to_file(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\api.py", line 334, in tts_to_file
+    wav = self.tts(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\api.py", line 276, in tts
+    wav = self.synthesizer.tts(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\utils\synthesizer.py", line 386, in tts
+    outputs = self.tts_model.synthesize(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\tts\models\xtts.py", line 419, in synthesize
+    return self.full_inference(text, speaker_wav, language, **settings)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\utils\_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\tts\models\xtts.py", line 488, in full_inference
+    return self.inference(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\utils\_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\tts\models\xtts.py", line 541, in inference
+    gpt_codes = self.gpt.generate(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\tts\layers\xtts\gpt.py", line 590, in generate
+    gen = self.gpt_inference.generate(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\utils\_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\generation\utils.py", line 1719, in generate
+    return self.sample(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\generation\utils.py", line 2801, in sample
+    outputs = self(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\TTS\tts\layers\xtts\gpt_inference.py", line 97, in forward
+    transformer_outputs = self.transformer(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 888, in forward
+    outputs = block(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 390, in forward
+    attn_outputs = self.attn(
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 331, in forward
+    attn_output, attn_weights = self._attn(query, key, value, attention_mask, head_mask)
+  File "C:\Users\aasad\Desktop\RAG_Project\.venv_tts\lib\site-packages\transformers\models\gpt2\modeling_gpt2.py", line 218, in _attn
+    attn_output = torch.matmul(attn_weights, value)
+KeyboardInterrupt

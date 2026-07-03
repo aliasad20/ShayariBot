@@ -1,0 +1,7 @@
+# Isolated TTS Environment Requirements
+--extra-index-url https://download.pytorch.org/whl/cpu
+TTS>=0.22.0
+numpy==1.22.0
+torch==2.3.1
+torchaudio==2.3.1
+transformers==4.35.2

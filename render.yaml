@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: shayaribot
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt && python backend/ingest.py
+    startCommand: streamlit run app/main.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: CHROMA_PERSIST_DIR
+        value: ./chroma_db
