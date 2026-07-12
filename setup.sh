@@ -13,7 +13,7 @@ if [ ! -d ".venv" ]; then
     python3.13 -m venv .venv
 fi
 source .venv/bin/activate
-pip install --no-cache-dir -r requirements.txt
+pip install --no-cache-dir --prefer-binary -r requirements.txt
 python backend/ingest.py
 deactivate
 
@@ -25,7 +25,7 @@ if [ ! -d ".venv_tts" ]; then
 fi
 source .venv_tts/bin/activate
 echo "Installing Voice AI (This may take a while)..."
-pip install --no-cache-dir -r requirements_tts.txt
+pip install --no-cache-dir --prefer-binary -r requirements_tts.txt
 deactivate
 
 echo ""
