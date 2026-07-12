@@ -35,19 +35,31 @@ USER user
 # Set home to the user's home directory
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/home/user/.cache/huggingface
 
 # Set working directory
 WORKDIR $HOME/app
 
-# Copy application files and change ownership
+# Copy requirements first to maximize Docker layer caching
+COPY --chown=user requirements.txt requirements_tts.txt $HOME/app/
+
+# Build both isolated virtual environments and install pre-built wheels
+RUN python3.13 -m venv .venv && \
+    .venv/bin/pip install --no-cache-dir --prefer-binary --upgrade pip && \
+    .venv/bin/pip install --no-cache-dir --prefer-binary -r requirements.txt && \
+    python3.10 -m venv .venv_tts && \
+    .venv_tts/bin/pip install --no-cache-dir --prefer-binary --upgrade pip && \
+    .venv_tts/bin/pip install --no-cache-dir --prefer-binary -r requirements_tts.txt
+
+# Copy all application files
 COPY --chown=user . $HOME/app
 
-# Run the setup script to construct both virtual environments
-RUN chmod +x setup.sh && ./setup.sh
+# Run data ingestion into ChromaDB during Docker build
+RUN .venv/bin/python backend/ingest.py
 
 # Expose HuggingFace Spaces default port
 EXPOSE 7860
 
 # Run the application using the main environment
-CMD [".venv/bin/python", "-m", "streamlit", "run", "app/main.py", "--server.port=7860", "--server.address=0.0.0.0", "--server.fileWatcherType=none"]
+CMD [".venv/bin/python", "-m", "streamlit", "run", "app/main.py", "--server.port=7860", "--server.address=0.0.0.0"]
